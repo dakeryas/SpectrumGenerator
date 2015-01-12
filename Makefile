@@ -2,7 +2,7 @@ ODIR = ./objects
 SDIR = ./src
 IDIR = ./include
 MAIN = total.cpp
-EXECUTABLE = total.exe
+EXECUTABLE = $(patsubst %.cpp,%, $(MAIN))
 
 MAKEFLAGS = -j$(shell nproc)
 FLAGS := $(shell root-config --cflags)
@@ -37,5 +37,5 @@ $(EXECUTABLE): $(OBJS)
 	$(CXX) $(OPTFLAG) -o $@  $^ $(LIBS)
 
 clean:
-	rm -f $(ODIR)/*.o $(SDIR)/*~ $(IDIR)/*~ *.exe *.txt *.root *~
+	rm -f $(ODIR)/*.o $(SDIR)/*~ $(IDIR)/*~ $(EXECUTABLE) *.txt *.root *~
 
