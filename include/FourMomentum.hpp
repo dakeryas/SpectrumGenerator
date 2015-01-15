@@ -9,9 +9,7 @@
 using namespace::std;
 
 class FourMomentum {
-  
-friend ostream& operator<<(ostream& output, const FourMomentum& P);
-  
+    
   double E,px,py,pz;
 
 public:
@@ -36,5 +34,7 @@ public:
   void Boost(const FourMomentum& P);//apply a  boost according to P to a fourmomentum
   
 };
+
+ostream& operator<<(ostream& output, const FourMomentum& P);
 
 #endif

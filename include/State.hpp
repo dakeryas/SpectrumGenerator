@@ -7,8 +7,6 @@
 
 class State { //variables used in the decay from a particle/state of mass m1 and width w1 to particles of masses m2 and m3 and corresponding widths
 
-friend ostream& operator<<(ostream& output, const State* s);
-  
 protected:
   FourMomentum P;
   double m0; //average mass of the state /!\ doesn't not correspond to the current mass (P.GetInvariant()) for RStates
@@ -25,6 +23,7 @@ public:
   State* Next(TRandom3& ran); //select a decay path for the state
   const FourMomentum& GetP() const;
   double GetKinetic() const;
+  double GetAverageMass() const;// return m0
   double GetMass() const;//return P.GetInvariant()
   const State* GetChild(unsigned k) const;
   const vector<State*>& GetChildren() const;
@@ -39,5 +38,7 @@ public:
   virtual void AdaptMass(TRandom3&){}//sets P to a random rest value according to w for RStates /!\ the resulting may be negative
  
 };
+
+ostream& operator<<(ostream& output, const State* s);
 
 #endif

@@ -10,8 +10,6 @@ using namespace::std;
 class Point {
   
 public:
-  
-friend ostream& operator<<(ostream& output, const Point& p);
 
   double x, y, z;
   Point();
@@ -22,5 +20,7 @@ friend ostream& operator<<(ostream& output, const Point& p);
   void HollowCylinder(TRandom3& ran, double R1, double R2, double h1, double h2); //moves a point randomly between two cylinders of respective radii R1 and R2 and of respective height h1 and h2
 
 };
+
+ostream& operator<<(ostream& output, const Point& p);
 
 #endif

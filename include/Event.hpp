@@ -9,8 +9,6 @@
 
 class Event {
 
-friend ostream& operator<<(ostream& output, const Event& Ev);//for input masses in MeV sets the file into GeV
-  
   State* start;
   TRandom3 ran;
   Point position; //to store the whole vertex position(only one per event at the moment)
@@ -25,13 +23,19 @@ public:
   Event(State* start, const Point& position);
   Event(State* start, const double R, const double h);
   Event(State* start, double R1, double R2, double h1, double h2);
+  void SetPosition(const Point& position);
   void SetInCylinder(double R, double h);
   void SetInHollowCylinder(double R1, double R2, double h1, double h2);
   void Process();
   void Fill(TH1F& h);
   void Fill(TH1F& h, int PDG);//fill only particles with pdg = PDG
+  const Point& GetPosition() const;
+  const vector<State*>& GetStableStates() const;
+  
   
 };
+
+ostream& operator<<(ostream& output, const Event& Ev);
 
 
 #endif

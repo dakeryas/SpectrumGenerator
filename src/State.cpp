@@ -2,7 +2,7 @@
 
 ostream& operator<<(ostream& output, const State* s){//for input masses in MeV sets the file into GeV
 
-  output<<"PDG = "<<setw(10)<<left<<s->GetPDG()<<"Mass = "<<setw(10)<<left<<s->GetMass()<<"m0 = "<<setw(10)<<left<<s->m0<<endl<<s->GetP();
+  output<<"PDG = "<<setw(10)<<left<<s->GetPDG()<<"Mass = "<<setw(10)<<left<<s->GetMass()<<"m0 = "<<setw(10)<<left<<s->GetAverageMass()<<endl<<s->GetP();
   return output;
   
 }
@@ -84,6 +84,12 @@ double State::GetKinetic() const{
   
   return P.GetKinetic();
   
+}
+
+double State::GetAverageMass() const{
+  
+  return m0;
+
 }
 
 double State::GetMass() const{
