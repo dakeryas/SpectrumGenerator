@@ -1,0 +1,10 @@
+#Spectrum Generator
+
+The Spectrum Generator aims at generating HEP text files for the decays trees of the cosmogenic isotopes in reactor experiments.
+
+In the main file "total.cpp", the beta delayed-neutron decay trees of 9Li and 8He have been implemented in the "hepGeneratorX" functors. You may tweak the branching ratios as input vectors.
+Very basic multi-threaded functions "generateXbranches" call the functors mentioned above with input parameters corresponding to only one full decay path. These functions are meant to generate one HEP textfile per "poorly known" branching ratio. Please note that you need a C++11 compatible compiler to use them.
+
+It is up to you to run the generated HEP files through Geant4 or your own detector' simulator, and gather them up.
+
+The source code implements a State interface and various inheriting classes. Not all getter's or setter's have been implemented, you're free to add them as you wish. The Event class outstream commands what is written to the output text files.
