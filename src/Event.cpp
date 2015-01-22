@@ -48,8 +48,8 @@ void Event::SetInHollowCylinder(double R1, double R2, double h1, double h2){//fi
 
 void Event::ChooseDecayRoad(){
  
-  road.resize(0);
-  stable.resize(0);
+  road.clear();
+  stable.clear();
   
   State* old = start;
   State* current = old->Next(ran);
