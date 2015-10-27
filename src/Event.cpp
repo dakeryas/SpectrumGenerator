@@ -1,6 +1,6 @@
 #include "Event.hpp"
 
-ostream& operator<<(ostream& output, const Event& Ev){//for input masses in MeV sets the file into GeV
+std::ostream& operator<<(std::ostream& output, const Event& Ev){//for input masses in MeV sets the file into GeV
 
   output<<Ev.GetStableStates().size()<<"\n";
   for(State* state : Ev.GetStableStates())
@@ -107,7 +107,7 @@ const Point& Event::GetPosition() const{
 
 }
 
-const vector<State*>& Event::GetStableStates() const{
+const std::vector<State*>& Event::GetStableStates() const{
   
   return stable;
 

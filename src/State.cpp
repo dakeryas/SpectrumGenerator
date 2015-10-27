@@ -1,15 +1,15 @@
 #include "State.hpp"
 
-ostream& operator<<(ostream& output, const State* s){//for input masses in MeV sets the file into GeV
+std::ostream& operator<<(std::ostream& output, const State* s){//for input masses in MeV sets the file into GeV
 
-  output<<"PDG = "<<setw(10)<<left<<s->GetPDG()<<"Mass = "<<setw(10)<<left<<s->GetMass()<<"m0 = "<<setw(10)<<left<<s->GetAverageMass()<<endl<<s->GetP();
+  output<<"PDG = "<<std::setw(10)<<std::left<<s->GetPDG()<<"Mass = "<<std::setw(10)<<std::left<<s->GetMass()<<"m0 = "<<std::setw(10)<<std::left<<s->GetAverageMass()<<std::endl<<s->GetP();
   return output;
   
 }
 
-vector<double> TrSum(const vector<double> br, const unsigned end){//does a triangle sum up to the desired end(usually the size of br)
+std::vector<double> TrSum(const std::vector<double> br, const unsigned end){//does a triangle sum up to the desired end(usually the size of br)
   
-  vector<double> br_sum;
+  std::vector<double> br_sum;
   
   double s = 0;
   br_sum.push_back(s);
@@ -35,17 +35,17 @@ State::State(const FourMomentum& P):P(P), m0(P.GetInvariant()),children(),rsum()
   
 }
 
-State::State(const FourMomentum& P, const vector<State*>& children):P(P), m0(P.GetInvariant()),children(children),rsum(vector<double>(children.size(), 0)){
+State::State(const FourMomentum& P, const std::vector<State*>& children):P(P), m0(P.GetInvariant()),children(children),rsum(std::vector<double>(children.size(), 0)){
   
 }
 
-State::State(const FourMomentum& P, const vector<State*>& children, const vector<double>& r):P(P), m0(P.GetInvariant()),children(children),rsum(){
+State::State(const FourMomentum& P, const std::vector<State*>& children, const std::vector<double>& r):P(P), m0(P.GetInvariant()),children(children),rsum(){
 
   IncorporateRatios(r);
   
 }
 
-void State::IncorporateRatios(vector<double> r){
+void State::IncorporateRatios(std::vector<double> r){
   
   unsigned end = children.size();
   
@@ -105,7 +105,7 @@ const State* State::GetChild(unsigned k) const{
   
 }
 
-const vector<State*>& State::GetChildren() const{
+const std::vector<State*>& State::GetChildren() const{
   
   return children;
   

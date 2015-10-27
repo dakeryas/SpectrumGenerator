@@ -9,11 +9,11 @@ struct hepGeneratorLi{
   
   const char* outfilename;
   const unsigned nEvents;
-  const vector<double> rb; 
-  const vector<double> rs;
-  const vector<Hist2d> betaMap;
+  const std::vector<double> rb; 
+  const std::vector<double> rs;
+  const std::vector<Hist2d> betaMap;
   
-  hepGeneratorLi(const char* outfilename, const unsigned nEvents, const vector<double>& rb, const vector<double>& rs, const vector<Hist2d>& betaMap):outfilename(outfilename),nEvents(nEvents),rb(rb),rs(rs), betaMap(betaMap) {}
+  hepGeneratorLi(const char* outfilename, const unsigned nEvents, const std::vector<double>& rb, const std::vector<double>& rs, const std::vector<Hist2d>& betaMap):outfilename(outfilename),nEvents(nEvents),rb(rb),rs(rs), betaMap(betaMap) {}
   void operator()(){
     
   //Li9 tree 
@@ -77,7 +77,7 @@ struct hepGeneratorLi{
 
     State* s9Li = new RState(mass::_9Li, PDG::_9Li, {s9Be243_e, s9Be278_e, s9Be794_e, s9Be1128_e, s9Be1181_e}, rb);
     
-    ofstream out(outfilename); //stream to write the hepevevent text file
+    std::ofstream out(outfilename); //stream to write the hepevevent text file
     TRandom3 ran(0);
     
     Event lithium(s9Li, dchooz::R_target, dchooz::h_target);
@@ -114,11 +114,11 @@ struct hepGeneratorHe{
   
   const char* outfilename;
   const unsigned nEvents;
-  const vector<double> rb; 
-  const vector<double> rs;
-  vector<Hist2d> betaMap;
+  const std::vector<double> rb; 
+  const std::vector<double> rs;
+  std::vector<Hist2d> betaMap;
   
-  hepGeneratorHe(const char* outfilename, const unsigned nEvents, const vector<double>& rb, const vector<double>& rs, const vector<Hist2d>& betaMap):outfilename(outfilename),nEvents(nEvents),rb(rb),rs(rs), betaMap(betaMap) {}
+  hepGeneratorHe(const char* outfilename, const unsigned nEvents, const std::vector<double>& rb, const std::vector<double>& rs, const std::vector<Hist2d>& betaMap):outfilename(outfilename),nEvents(nEvents),rb(rb),rs(rs), betaMap(betaMap) {}
   void operator()(){
     
   //Li9 tree 
@@ -162,7 +162,7 @@ struct hepGeneratorHe{
     
     State* s8He = new RState(mass::_8He, PDG::_8He, {s8Li321_e, s8Li54_e, s8Li967_e}, rb);
     
-    ofstream out(outfilename); //stream to write the hepevevent text file
+    std::ofstream out(outfilename); //stream to write the hepevevent text file
     TRandom3 ran(0);
 
     Event helium(s8He, dchooz::R_target, dchooz::h_target);
@@ -196,11 +196,11 @@ struct hepGeneratorHe{
   
 };
 
-template <class T> void launchThreads(vector<T>& workers){
+template <class T> void launchThreads(std::vector<T>& workers){
 
-  unsigned nThreads = thread::hardware_concurrency();//get the number of working cores
+  unsigned nThreads = std::thread::hardware_concurrency();//get the number of working cores
   if(nThreads == 0) nThreads = 1;
-  vector<thread> threads(nThreads);
+  std::vector<std::thread> threads(nThreads);
   
   auto itWk = workers.begin();
   while(itWk != workers.end()){
@@ -208,13 +208,13 @@ template <class T> void launchThreads(vector<T>& workers){
     auto itTh = threads.begin(); 
     while(itTh != threads.end() && itWk != workers.end()){
 
-      *itTh = thread(*itWk);//start each thread
+      *itTh = std::thread(*itWk);//start each thread
       ++itTh;
       ++itWk;
       
     }
     
-    for(thread& th : threads) if(th.joinable()) th.join();//join them all to the current thread
+    for(auto& th : threads) if(th.joinable()) th.join();//join them all to the current thread
     
   }
   
@@ -222,9 +222,9 @@ template <class T> void launchThreads(vector<T>& workers){
 
 void generateLiBranches(const unsigned nEvents = 1e4){
     
-  vector<hepGeneratorLi> workers;//speed up the branch generations with a thread per branch
+  std::vector<hepGeneratorLi> workers;//speed up the branch generations with a thread per branch
     
-  vector<Hist2d> betaMapLi (5);
+  std::vector<Hist2d> betaMapLi (5);
   TFile LiFile("spectres_beta/cartes_li9.root");//TFile's are not thread safe
   betaMapLi[0] = Hist2d(static_cast<TH2F*>(LiFile.Get("carte_0")));
   betaMapLi[1] = Hist2d(static_cast<TH2F*>(LiFile.Get("carte_1")));
@@ -233,8 +233,8 @@ void generateLiBranches(const unsigned nEvents = 1e4){
   betaMapLi[4] = Hist2d(static_cast<TH2F*>(LiFile.Get("carte_4")));
   LiFile.Close();
   
-  vector<double> rbLi {1, 0, 0, 0, 0};
-  vector<double> rsLi {1, 0, 0, 0, 0, 0};
+  std::vector<double> rbLi {1, 0, 0, 0, 0};
+  std::vector<double> rsLi {1, 0, 0, 0, 0, 0};
   workers.push_back(hepGeneratorLi("li_243_aan.txt", nEvents, rbLi, rsLi,betaMapLi)); 
   rsLi = {0, 1, 0, 0, 0, 0};
   workers.push_back(hepGeneratorLi("li_243_8Be.txt", nEvents, rbLi, rsLi,betaMapLi)); 
@@ -297,17 +297,17 @@ void generateLiBranches(const unsigned nEvents = 1e4){
 
 void generateHeBranches(const unsigned nEvents = 1e4){
     
-  vector<hepGeneratorHe> workers;//speed up the branch generations with a thread per branch
+  std::vector<hepGeneratorHe> workers;//speed up the branch generations with a thread per branch
     
-  vector<Hist2d> betaMapHe (3);
+  std::vector<Hist2d> betaMapHe (3);
   TFile HeFile("spectres_beta/cartes_he8.root");//TFile's are not thread safe
   betaMapHe[0] = Hist2d(static_cast<TH2F*>(HeFile.Get("carte_0")));
   betaMapHe[1] = Hist2d(static_cast<TH2F*>(HeFile.Get("carte_1")));
   betaMapHe[2] = Hist2d(static_cast<TH2F*>(HeFile.Get("carte_2")));
   HeFile.Close();
   
-  vector<double> rbHe {1, 0, 0};
-  vector<double> rsHe {1, 0, 0, 0};
+  std::vector<double> rbHe {1, 0, 0};
+  std::vector<double> rsHe {1, 0, 0, 0};
   workers.push_back(hepGeneratorHe("he_321_7Li.txt", nEvents, rbHe, rsHe,betaMapHe)); 
   rsHe = {0, 1, 0, 0};
   workers.push_back(hepGeneratorHe("he_321_7Li048.txt", nEvents, rbHe, rsHe,betaMapHe)); 
@@ -336,8 +336,8 @@ void generateHeBranches(const unsigned nEvents = 1e4){
 
 int main(int argc, char* argv[]){
   
-  if(argc == 2) generateLiBranches(stod(argv[1]));
-  else if(argc == 3 && string(argv[2]) == "helium") generateHeBranches(stod(argv[1]));
+  if(argc == 2) generateLiBranches(std::stod(argv[1]));
+  else if(argc == 3 && std::string(argv[2]) == "helium") generateHeBranches(std::stod(argv[1]));
   else generateLiBranches();
   return 0;
 

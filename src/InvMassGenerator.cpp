@@ -1,9 +1,8 @@
 #include "InvMassGenerator.hpp"
-#include "VState.hpp"
 
 double TwobodyPhaseSpc(double m0, double m1, double m2){
 
-  return sqrt(VState::TrFct(pow(m0, 2), pow(m1, 2), pow(m2, 2)))/(8*3.14159*m0);
+  return std::sqrt(VState::TrFct(std::pow(m0, 2), std::pow(m1, 2), std::pow(m2, 2)))/(8*3.14159*m0);
   
 }
 
@@ -89,9 +88,9 @@ void InvMassGenerator::Generate(){
   
 }
 
-vector<double> InvMassGenerator::GetMassSet(){
+std::vector<double> InvMassGenerator::GetMassSet(){
   
   Generate();
-  return vector<double>(M.begin()+1, M.end()-1);//remove the first element and the last element (M.end()-1 is the last one, that we don't want); M size is at least 3
+  return std::vector<double>(M.begin()+1, M.end()-1);//remove the first element and the last element (M.end()-1 is the last one, that we don't want); M size is at least 3
   
 }

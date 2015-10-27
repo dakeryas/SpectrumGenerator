@@ -1,22 +1,22 @@
 #include "LState.hpp"
 
-LState::LState(const FourMomentum& P, const int PDG, const vector<State*>& children, const double w):RState(P, PDG, children),w(w){
+LState::LState(const FourMomentum& P, const int PDG, const std::vector<State*>& children, const double w):RState(P, PDG, children),w(w){
   
-  IncorporateRatios(vector<double>(children.size(), 1/children.size()));
-  
-}
-
-LState::LState(const FourMomentum& P, const int PDG, const vector<State*>& children, const vector<double>& r, const double w):RState(P, PDG, children, r),w(w){
+  IncorporateRatios(std::vector<double>(children.size(), 1/children.size()));
   
 }
 
-LState::LState(const double m0, const int PDG, const vector<State*>& children, const double w):LState(FourMomentum(m0), PDG, children, w){
+LState::LState(const FourMomentum& P, const int PDG, const std::vector<State*>& children, const std::vector<double>& r, const double w):RState(P, PDG, children, r),w(w){
+  
+}
+
+LState::LState(const double m0, const int PDG, const std::vector<State*>& children, const double w):LState(FourMomentum(m0), PDG, children, w){
  
-  IncorporateRatios(vector<double>(children.size(), 1/children.size()));
+  IncorporateRatios(std::vector<double>(children.size(), 1/children.size()));
   
 }
 
-LState::LState(const double m0, const int PDG, const vector<State*>& children, const vector<double>& r, const double w):LState(FourMomentum(m0), PDG, children, r, w){
+LState::LState(const double m0, const int PDG, const std::vector<State*>& children, const std::vector<double>& r, const double w):LState(FourMomentum(m0), PDG, children, r, w){
   
 }
 

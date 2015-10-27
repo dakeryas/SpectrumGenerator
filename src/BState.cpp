@@ -1,10 +1,10 @@
 #include "BState.hpp"
 
-BState::BState(const FourMomentum& P, const vector<State*>& children, const Hist2d& kinetic_map):VState(P, children), kinetic_map(kinetic_map){
+BState::BState(const FourMomentum& P, const std::vector<State*>& children, const Hist2d& kinetic_map):VState(P, children), kinetic_map(kinetic_map){
   
 }
 
-BState::BState(const double m0, const vector<State*>& children, const Hist2d& kinetic_map):VState(m0, children), kinetic_map(kinetic_map){
+BState::BState(const double m0, const std::vector<State*>& children, const Hist2d& kinetic_map):VState(m0, children), kinetic_map(kinetic_map){
   
 }
 

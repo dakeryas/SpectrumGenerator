@@ -12,8 +12,8 @@ class Event {
   State* start;
   TRandom3 ran;
   Point position; //to store the whole vertex position(only one per event at the moment)
-  vector<State*> road;
-  vector<State*> stable;
+  std::vector<State*> road;
+  std::vector<State*> stable;
   void ChooseDecayRoad();//fills 'road' with the states on the decay path of 'start'
   void AdaptRoad();//set a random mass for the real states and check that the configuraiton is kinematically possible
   void DecayRoadStates();//decay all the virtual states and fills the stable states on the way
@@ -30,12 +30,12 @@ public:
   void Fill(TH1F& h);
   void Fill(TH1F& h, int PDG);//fill only particles with pdg = PDG
   const Point& GetPosition() const;
-  const vector<State*>& GetStableStates() const;
+  const std::vector<State*>& GetStableStates() const;
   
   
 };
 
-ostream& operator<<(ostream& output, const Event& Ev);
+std::ostream& operator<<(std::ostream& output, const Event& Ev);
 
 
 #endif

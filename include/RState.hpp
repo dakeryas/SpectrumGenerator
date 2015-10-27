@@ -11,11 +11,11 @@ protected:
   
 public:
   RState(const FourMomentum& P, const int PDG);
-  RState(const FourMomentum& P, const int PDG, const vector<State*>& children);
-  RState(const FourMomentum& P, const int PDG, const vector<State*>& children, const vector<double>& r);
+  RState(const FourMomentum& P, const int PDG, const std::vector<State*>& children);
+  RState(const FourMomentum& P, const int PDG, const std::vector<State*>& children, const std::vector<double>& r);
   RState(const double m0, const int PDG);
-  RState(const double m0, const int PDG, const vector<State*>& children);
-  RState(const double m0, const int PDG, const vector<State*>& children, const vector<double>& r);
+  RState(const double m0, const int PDG, const std::vector<State*>& children);
+  RState(const double m0, const int PDG, const std::vector<State*>& children, const std::vector<double>& r);
   ~RState(){}
   bool IsStable();
   int GetPDG() const;

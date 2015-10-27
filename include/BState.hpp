@@ -11,8 +11,8 @@ class BState: public VState { //variables used in the decay from a particle/stat
   double GetRndmElectronKinetic(TRandom3& ran);//get a random kinetic energy for the electron; slice a TH2 at Yvalue and returns a random number distributed according to the resulting slice, ie the TH1 named "chosent dist"
   
 public:
-  BState(const FourMomentum& P, const vector<State*>& children, const Hist2d& kinetic_map);
-  BState(const double m0, const vector<State*>& children, const Hist2d& kinetic_map);
+  BState(const FourMomentum& P, const std::vector<State*>& children, const Hist2d& kinetic_map);
+  BState(const double m0, const std::vector<State*>& children, const Hist2d& kinetic_map);
   ~BState(){}
   void Process(TRandom3& ran);
  

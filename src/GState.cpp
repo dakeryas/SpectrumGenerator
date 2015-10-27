@@ -1,22 +1,22 @@
 #include "GState.hpp"
 
-GState::GState(const FourMomentum& P, const int PDG, const vector<State*>& children, const double w):RState(P, PDG, children),sigma(w/2/sqrt(2*log(2))){
+GState::GState(const FourMomentum& P, const int PDG, const std::vector<State*>& children, const double w):RState(P, PDG, children),sigma(w/2/sqrt(2*log(2))){
   
-  IncorporateRatios(vector<double>(children.size(), 1/children.size()));
-  
-}
-
-GState::GState(const FourMomentum& P, const int PDG, const vector<State*>& children, const vector<double>& r, const double w):RState(P, PDG, children, r),sigma(w/2/sqrt(2*log(2))){
+  IncorporateRatios(std::vector<double>(children.size(), 1/children.size()));
   
 }
 
-GState::GState(const double m0, const int PDG, const vector<State*>& children, const double w):GState(FourMomentum(m0), PDG, children, w){
+GState::GState(const FourMomentum& P, const int PDG, const std::vector<State*>& children, const std::vector<double>& r, const double w):RState(P, PDG, children, r),sigma(w/2/sqrt(2*log(2))){
+  
+}
+
+GState::GState(const double m0, const int PDG, const std::vector<State*>& children, const double w):GState(FourMomentum(m0), PDG, children, w){
  
-  IncorporateRatios(vector<double>(children.size(), 1/children.size()));
+  IncorporateRatios(std::vector<double>(children.size(), 1/children.size()));
   
 }
 
-GState::GState(const double m0, const int PDG, const vector<State*>& children, const vector<double>& r, const double w):GState(FourMomentum(m0), PDG, children, r, w){
+GState::GState(const double m0, const int PDG, const std::vector<State*>& children, const std::vector<double>& r, const double w):GState(FourMomentum(m0), PDG, children, r, w){
   
 }
 

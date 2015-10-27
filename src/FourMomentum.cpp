@@ -1,8 +1,8 @@
 #include "FourMomentum.hpp"
 
-ostream& operator<<(ostream& output, const FourMomentum& P){
+std::ostream& operator<<(std::ostream& output, const FourMomentum& P){
 
-  output<<"E = "<<setw(12)<<left<<P.GetE()<<"px = "<<setw(12)<<left<<P.Getpx()<<"py = "<<setw(12)<<left<<P.Getpy()<<"pz = "<<setw(12)<<left<<P.Getpz();
+  output<<"E = "<<std::setw(12)<<std::left<<P.GetE()<<"px = "<<std::setw(12)<<std::left<<P.Getpx()<<"py = "<<std::setw(12)<<std::left<<P.Getpy()<<"pz = "<<std::setw(12)<<std::left<<P.Getpz();
   return output;
   
 }
@@ -11,15 +11,15 @@ FourMomentum::FourMomentum():E(0),px(0),py(0),pz(0){
   
 }
 
-FourMomentum::FourMomentum(const double m):E(m),px(0),py(0),pz(0){
+FourMomentum::FourMomentum(double m):E(m),px(0),py(0),pz(0){
   
 }
 
-FourMomentum::FourMomentum(const double E, const double px, const double py, const double pz):E(E),px(px),py(py),pz(pz){
+FourMomentum::FourMomentum(double E, double px, double py, double pz):E(E),px(px),py(py),pz(pz){
   
 }
 
-FourMomentum::FourMomentum(const double E, const double p, TRandom3& ran):E(E){
+FourMomentum::FourMomentum(double E, double p, TRandom3& ran):E(E){
   
   SetRandomDir(p, ran);
   
@@ -45,13 +45,13 @@ void FourMomentum::SetDir(const FourMomentum& Q){
 
 }
 
-void FourMomentum::SetE(const double Earg){ 
+void FourMomentum::SetE(double Earg){ 
   
   E = Earg;
 
 }
 
-void FourMomentum::SetRandomDir(const double p, TRandom3& ran){
+void FourMomentum::SetRandomDir(double p, TRandom3& ran){
   
   double cs = ran.Uniform(-1,1);
   double phi = ran.Uniform(0,2*3.14159);
@@ -111,7 +111,7 @@ const double& FourMomentum::Getpz() const{
 }
 
 
-void FourMomentum::SetRest(const double m){ 
+void FourMomentum::SetRest(double m){ 
   
   E = m;
   px = 0;
