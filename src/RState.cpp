@@ -1,30 +1,30 @@
 #include "RState.hpp"
 
-RState::RState(const FourMomentum& P, const int PDG):State(P),PDG(PDG){
+RState::RState(const FourMomentum& P, int PDG):State(P),PDG(PDG){
   
 }
 
-RState::RState(const FourMomentum& P, const int PDG, const std::vector<State*>& children):State(P, children), PDG(PDG){
+RState::RState(const FourMomentum& P, int PDG, const std::vector<State*>& children):State(P, children), PDG(PDG){
   
   IncorporateRatios(std::vector<double>(children.size(), 1/children.size()));
   
 }
 
-RState::RState(const FourMomentum& P, const int PDG, const std::vector<State*>& children, const std::vector<double>& r):State(P, children, r),PDG(PDG){
+RState::RState(const FourMomentum& P, int PDG, const std::vector<State*>& children, const std::vector<double>& r):State(P, children, r),PDG(PDG){
   
 }
 
-RState::RState(const double m0, const int PDG):RState(FourMomentum(m0), PDG){
+RState::RState(double m0, int PDG):RState(FourMomentum(m0), PDG){
 
 }
 
-RState::RState(const double m0, const int PDG, const std::vector<State*>& children):RState(FourMomentum(m0), PDG, children){
+RState::RState(double m0, int PDG, const std::vector<State*>& children):RState(FourMomentum(m0), PDG, children){
  
   IncorporateRatios(std::vector<double>(children.size(), 1/children.size()));
   
 }
 
-RState::RState(const double m0, const int PDG, const std::vector<State*>& children, const std::vector<double>& r):RState(FourMomentum(m0), PDG, children, r){
+RState::RState(double m0, int PDG, const std::vector<State*>& children, const std::vector<double>& r):RState(FourMomentum(m0), PDG, children, r){
   
 }
 

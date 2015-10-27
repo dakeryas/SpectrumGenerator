@@ -10,12 +10,12 @@ protected:
   void SetChildrenP();//propagate the kinetic energy (through P) to boost indeed the virtual children that will effectively decay;propagate the random mass
   
 public:
-  RState(const FourMomentum& P, const int PDG);
-  RState(const FourMomentum& P, const int PDG, const std::vector<State*>& children);
-  RState(const FourMomentum& P, const int PDG, const std::vector<State*>& children, const std::vector<double>& r);
-  RState(const double m0, const int PDG);
-  RState(const double m0, const int PDG, const std::vector<State*>& children);
-  RState(const double m0, const int PDG, const std::vector<State*>& children, const std::vector<double>& r);
+  RState(const FourMomentum& P, int PDG);
+  RState(const FourMomentum& P, int PDG, const std::vector<State*>& children);
+  RState(const FourMomentum& P, int PDG, const std::vector<State*>& children, const std::vector<double>& r);
+  RState(double m0, int PDG);
+  RState(double m0, int PDG, const std::vector<State*>& children);
+  RState(double m0, int PDG, const std::vector<State*>& children, const std::vector<double>& r);
   ~RState(){}
   bool IsStable();
   int GetPDG() const;

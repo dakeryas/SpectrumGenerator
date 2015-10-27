@@ -8,12 +8,12 @@ using namespace constants;
 struct hepGeneratorLi{
   
   const char* outfilename;
-  const unsigned nEvents;
+  unsigned nEvents;
   const std::vector<double> rb; 
   const std::vector<double> rs;
   const std::vector<Hist2d> betaMap;
   
-  hepGeneratorLi(const char* outfilename, const unsigned nEvents, const std::vector<double>& rb, const std::vector<double>& rs, const std::vector<Hist2d>& betaMap):outfilename(outfilename),nEvents(nEvents),rb(rb),rs(rs), betaMap(betaMap) {}
+  hepGeneratorLi(const char* outfilename, unsigned nEvents, const std::vector<double>& rb, const std::vector<double>& rs, const std::vector<Hist2d>& betaMap):outfilename(outfilename),nEvents(nEvents),rb(rb),rs(rs), betaMap(betaMap) {}
   void operator()(){
     
   //Li9 tree 
@@ -113,12 +113,12 @@ struct hepGeneratorLi{
 struct hepGeneratorHe{
   
   const char* outfilename;
-  const unsigned nEvents;
+  unsigned nEvents;
   const std::vector<double> rb; 
   const std::vector<double> rs;
   std::vector<Hist2d> betaMap;
   
-  hepGeneratorHe(const char* outfilename, const unsigned nEvents, const std::vector<double>& rb, const std::vector<double>& rs, const std::vector<Hist2d>& betaMap):outfilename(outfilename),nEvents(nEvents),rb(rb),rs(rs), betaMap(betaMap) {}
+  hepGeneratorHe(const char* outfilename, unsigned nEvents, const std::vector<double>& rb, const std::vector<double>& rs, const std::vector<Hist2d>& betaMap):outfilename(outfilename),nEvents(nEvents),rb(rb),rs(rs), betaMap(betaMap) {}
   void operator()(){
     
   //Li9 tree 
@@ -220,7 +220,7 @@ template <class T> void launchThreads(std::vector<T>& workers){
   
 }
 
-void generateLiBranches(const unsigned nEvents = 1e4){
+void generateLiBranches(unsigned nEvents = 1e4){
     
   std::vector<hepGeneratorLi> workers;//speed up the branch generations with a thread per branch
     
@@ -295,7 +295,7 @@ void generateLiBranches(const unsigned nEvents = 1e4){
   
 }
 
-void generateHeBranches(const unsigned nEvents = 1e4){
+void generateHeBranches(unsigned nEvents = 1e4){
     
   std::vector<hepGeneratorHe> workers;//speed up the branch generations with a thread per branch
     

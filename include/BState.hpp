@@ -12,7 +12,7 @@ class BState: public VState { //variables used in the decay from a particle/stat
   
 public:
   BState(const FourMomentum& P, const std::vector<State*>& children, const Hist2d& kinetic_map);
-  BState(const double m0, const std::vector<State*>& children, const Hist2d& kinetic_map);
+  BState(double m0, const std::vector<State*>& children, const Hist2d& kinetic_map);
   ~BState(){}
   void Process(TRandom3& ran);
  

@@ -20,7 +20,7 @@ Event::Event(State* start, const Point& position):start(start), ran(TRandom3 (0)
  
 }
 
-Event::Event(State* start, const double R, const double h):start(start),ran(TRandom3 (0)), position(Point(ran, R, h)){
+Event::Event(State* start, double R, double h):start(start),ran(TRandom3 (0)), position(Point(ran, R, h)){
   
 }
 

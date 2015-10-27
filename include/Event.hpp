@@ -21,7 +21,7 @@ class Event {
 public:
   Event();
   Event(State* start, const Point& position);
-  Event(State* start, const double R, const double h);
+  Event(State* start, double R, double h);
   Event(State* start, double R1, double R2, double h1, double h2);
   void SetPosition(const Point& position);
   void SetInCylinder(double R, double h);

@@ -7,7 +7,7 @@ std::ostream& operator<<(std::ostream& output, const State* s){//for input masse
   
 }
 
-std::vector<double> TrSum(const std::vector<double> br, const unsigned end){//does a triangle sum up to the desired end(usually the size of br)
+std::vector<double> TrSum(const std::vector<double> br, unsigned end){//does a triangle sum up to the desired end(usually the size of br)
   
   std::vector<double> br_sum;
   
