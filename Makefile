@@ -1,7 +1,7 @@
 ODIR = ./objects
 SDIR = ./src
 IDIR = ./include
-MAIN = total.cpp
+MAIN = generator.cpp
 EXECUTABLE = $(patsubst %.cpp,%, $(MAIN))
 
 MAKEFLAGS = -j$(shell nproc)
@@ -34,7 +34,7 @@ $(ODIR)/%.o:$(SDIR)/%.cpp $(IDIR)/%.hpp
 
 
 $(EXECUTABLE): $(OBJS)
-	$(CXX) $(OPTFLAG) -o $@  $^ $(LIBS)
+	$(CXX) -o $@  $^ $(LIBS)
 
 clean:
 	rm -f $(ODIR)/*.o $(SDIR)/*~ $(IDIR)/*~ $(EXECUTABLE) *.txt *.root *~

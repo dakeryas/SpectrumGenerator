@@ -1,5 +1,5 @@
 #include <thread>
-#include <TFile.h>
+#include "TFile.h"
 #include "Constants.hpp"
 #include "Event.hpp"
 
@@ -318,7 +318,7 @@ void generateHeBranches(const unsigned nEvents = 1e4){
   rsHe = {0, 1, 0, 0};
   workers.push_back(hepGeneratorHe("he_54_7Li048.txt", nEvents, rbHe, rsHe,betaMapHe)); 
   rsHe = {0, 0, 1, 0};
-  workers.push_back(hepGeneratorHe("he_54_aan.txt", nEvents, rbHe, rsHe,betaMapHe)); 
+  workers.push_back(hepGeneratorHe("he_54_atn.txt", nEvents, rbHe, rsHe,betaMapHe)); 
   
   rbHe = {0, 0, 1};
   rsHe = {1, 0, 0, 0};
